@@ -1,0 +1,21 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin:auto;
+    font-size:1vw;
+    
+}
+.border-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin:auto;
+}
+.panel-body{
+    margin-top: 15pt;
+}
+.menu1 ul{
+	position: absolute;
+	z-index: 999;
+}
