@@ -18,7 +18,7 @@
             list($id, $ten, $tenkhongdau) = explode(':',$loai);
             ?>
             <li class="list-group-item">
-              <a href="./loaitin.php?id_loai=<?=$id?>"><?=$ten?></a>
+              <a href="./loaitin.php?alias=<?=$tenkhongdau?>&id_loai=<?=$id?>"><?=$ten?></a>
             </li>
             <?php
           }
@@ -45,14 +45,17 @@
             if($i==0){
               ?>
               <div class="item active">
-                <img src="./public/image/slide/<?=$slide[$i]->Hinh?>" alt="Los Angeles" style="width:100%;">
+                <img src="./public/image/slide/<?=$slide[$i]->Hinh?>" alt="Hình của Slide">
+                <div class="text-on-image"><?=$slide[$i]->Ten ?></div>
+            
               </div>
               <?php
             }
             else{
               ?>         
               <div class="item">
-                <img src="./public/image/slide/<?=$slide[$i]->Hinh?>" alt="Chicago" style="width:100%;">
+                <img src="./public/image/slide/<?=$slide[$i]->Hinh?>" alt="Hình của Slide">
+                <div class="text-on-image"><?=$slide[$i]->Ten ?></div>
               </div>
               <?php
             }
@@ -72,51 +75,42 @@
       </div>
 
       <!-- end slide -->
-      <div class="panel-body">
+      <div class="panel-body" id="datasearch">
         <!-- item -->
         <?php
         foreach($menu as $mn){
          ?>
          <div class="item">
-          <h3>
+          
+         <img class="img-responsive" src="./public/image/tintuc/<?=$mn->HinhTin?>" style="width:100%" alt="Hình ảnh mô tả thông tin">
+        
+         <h3 class="text-on-image">
             <a href="#"><?=$mn->Ten ?></a> |
             <?php
             $loaitin = explode(',',$mn->LoaiTin);
-            foreach($loaitin as $loai){
-              list($id, $ten, $tenkhongdau) = explode(':',$loai);
-              ?>
-              <small><a href="./loaitin.php?id_loai=<?=$id?>"><?=$ten?></a></small>|
-              
+            foreach($loaitin as $loai){list($id, $ten, $tenkhongdau) = explode(':',$loai);
+             ?>
+            <small><a href="./loaitin.php?alias=<?=$tenkhongdau?>&id_loai=<?=$id?>"><?=$ten?></a></small>|
               <?php
-              
             }
-            
             ?>					
           </h3>
-          <div class="news">
-            <div class="article">
-              <div class="thumb" style="background-image: url(./public/image/tintuc/<?=$mn->HinhTin?>)"></div>
-              <div class="title"><?= $mn->TieuDeTin ?></div>
-            </div>
-          </div>
-          <div class="col-12 border-right">
-            <div class="col-3">
-             <a href="./chitiet.php?loai_tin=<?= $tenkhongdau?>&id_tin=<?=$mn->idTin?>">
-               <img class="img-responsive" src="./public/image/tintuc/<?=$mn->HinhTin?>" width="150pt" alt="">
-             </a>
-           </div>
-
-           <div class="col-9">
-             <h3><?= $mn->TieuDeTin ?></h3>
-             <p><?= $mn->TomTatTin ?></p>
-             <a class="btn btn-primary" href="./chitiet.php?loai_tin=<?= $tenkhongdau?>&id_tin=<?=$mn->idTin?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-           </div>
+           
+          <div class="border-right">
+           
+          
+             <h3 class="text-on-image"> <a class="btn btn-primary" href="./chitiet.php?loai_tin=<=$tenkhongdau?>&alias=<=$mn->TieuDeKhongDauTin?>&id_tin=<=$mn->idTin?>"><?= $mn->TieuDeTin ?></a></h3>
+            <!-- <p><= $mn->TomTatTin ?></p> -->
+            <!-- <a class="btn btn-primary" href="./chitiet.php?loai_tin=<=$tenkhongdau?>&alias=<=$mn->TieuDeKhongDauTin?>&id_tin=<=$mn->idTin?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a> -->
+           
 
          </div>
-       </div>
+         </div>
+       
        <?php
      }
      ?>
+     
    </div>
  </div>
 
@@ -126,13 +120,40 @@
  
  <!-- end slide   -->
  <div class="col-3 col-s-12">
-  <div class="aside">
-    <h2>What?</h2>
-    <p>Chania is a city on the island of Crete.</p>
-    <h2>Where?</h2>
-    <p>Crete is a Greek island in the Mediterranean Sea.</p>
-    <h2>How?</h2>
-    <p>You can reach Chania airport from all over Europe.</p>
+  <div class="aside" style="overflow-x:auto;">
+  <h3> Top Cầu Thủ Brazil ghi bàn tại Châu Âu</h3>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Points</th>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+    </tr>
+  </table>
   </div>
 </div>
 <!-- end aside   -->

@@ -1,3 +1,13 @@
+<?php 
+include('./controller/c_user.php');
+$c_user = new C_user();
+if(isset($_POST['dangnhap'])){
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$user = $c_user->dangnhap($email, md5($password));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +15,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
-	<link rel="stylesheet" href="./css/all.css" />
-	<link rel="stylesheet" href="./css/header.css" />
-	<link rel="stylesheet" href="./css/main.css" />
-	<link rel="stylesheet" href="./css/footer.css" />
-	<link rel="stylesheet" href="./css/dangnhap.css" />
-	<link rel="stylesheet" href="./flickity/flickity.css" media="screen">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
+	<link rel="stylesheet" href="./public/css/all.css" />
+	<link rel="stylesheet" href="./public/css/header.css" />
+	<link rel="stylesheet" href="./public/css/main.css" />
+	<link rel="stylesheet" href="./public/css/footer.css" />
+	<link rel="stylesheet" href="./public/css/dangnhap.css" />
 </head>
 <body>
-	<?php include './header.php';?>
+	<?php include './public/header.php';?>
 	<main>
 		<!-- Page Content -->
 		<div class="container">
@@ -23,10 +31,15 @@
 			<div class="row holder">
 				<div class="col-md-4"></div>
 				<div class="col-md-4 login">
+				<?php 
+				 if(isset($_SESSION['user_error'])){
+					 echo "<div class='title'>".$_SESSION['user_error']." </div>";
+				 }
+				 ?>
 					<div class="panel panel-default">
 						<div class="panel-heading">Đăng nhập</div>
 						<div class="panel-body">
-							<form>
+							<form method="POST">
 								<div>
 									<label>Email</label>
 									<input type="email" class="form-control" placeholder="Email" name="email" 
@@ -39,7 +52,7 @@
 								</div>
 								<br>
 								<div class="btn">
-									<button type="button" class="btn btn-success">Đăng nhập
+									<button type="submit" class="btn btn-success" name="dangnhap">Đăng nhập
 									</button>
 								</div>
 							</form>
@@ -52,7 +65,7 @@
 		</div>
 		<!-- end Page Content -->
 	</main>
-	<?php include './footer.php';?>
+	<?php include './public/footer.php';?>
 
 </body>
 </html>

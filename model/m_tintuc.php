@@ -55,6 +55,17 @@ class M_tintuc extends database{
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
+    function addComment($id_user, $id_tin, $noidung){
+        $sql = "INSERT INTO comment(idUser,idTintuc,NoiDung) VALUES(?,?,?)";
+        $this->setQuery($sql);
+        return $this->execute(array($id_user,$id_tin,$noidung));
+    }
+    function search($key){
+        $sql = "SELECT tt.*, lt.TenKhongDau as ten_khong_dau
+        FROM tintuc tt INNER JOIN loaitin lt ON tt.idLoaiTin = lt.id WHERE tt.TieuDe like '%$key%' or tt.TomTat like '%$key%' ";
+        $this->setQuery($sql);
+        return $this->loadAllRows(array($key));
+    }
 }
 
 ?>

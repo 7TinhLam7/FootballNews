@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('./controller/c_tintuc.php');
 $c_tintuc = new C_tintuc();
 $tintucs = $c_tintuc->loaitin();
@@ -18,6 +19,7 @@ $alias = $tintucs['alias'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    
     <link rel="stylesheet" href="./public/css/all.css" />
     <link rel="stylesheet" href="./public/css/header.css" />
     <link rel="stylesheet" href="./public/css/main.css" />
@@ -51,7 +53,7 @@ $alias = $tintucs['alias'];
                     list($id, $ten, $tenkhongdau) = explode(':',$loai);
                     ?>
                     <li class="list-group-item">
-                     <a href="./loaitin.php?id_loai=<?=$id?>"><?=$ten?></a>
+                     <a href="<?=$tenkhongdau?>-<?=$id?>"><?=$ten?></a>
                  </li>
                  <?php
              }
@@ -62,7 +64,7 @@ $alias = $tintucs['alias'];
      ?>
      
  </div>
- <div class="col-9 ">
+ <div class="col-9 " id="datasearch">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4><b><?= $title->Ten ?></b></h4>
@@ -73,7 +75,7 @@ $alias = $tintucs['alias'];
             <div class="row-item row">
                 <div class="col-md-3">
 
-                    <a href="./chitiet.php?loai_tin=<?=$alias->TenKhongDau?>&id_tin=<?=$tin->id?>">
+                    <a href="<?=$alias->TenKhongDau?>-<?=$tin->TieuDeKhongDau?>-<?=$tin->id?>">
                         <br>
                         <img class="img-responsive" src="./public/image/tintuc/<?=$tin->Hinh?>" alt="">
                     </a>
@@ -82,7 +84,7 @@ $alias = $tintucs['alias'];
                 <div class="col-md-9">
                     <h3><?= $tin->TieuDe ?></h3>
                     <p><?= $tin->TomTat ?></p>
-                    <a class="btn btn-primary" href="./chitiet.php?loai_tin=<?=$alias->TenKhongDau?>&id_tin=<?=$tin->id?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <a class="btn btn-primary" href="./chitiet.php?loai_tin=<?=$alias->TenKhongDau?>&alias=<?=$tin->TieuDe?>&id_tin=<?=$tin->id?>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
                 <div class="break"></div>
             </div>
@@ -108,5 +110,6 @@ $alias = $tintucs['alias'];
 </main>
 <?php include './public/footer.php';?>
 <script src="./public/css/menu.js"></script>
+<script src="./public/js/ajax_search.js"></script>
 </body>
 </html>

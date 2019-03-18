@@ -1,27 +1,21 @@
-
 * {
   box-sizing: border-box;
   font-family: "Roboto Condensed",Helvetica,Arial,sans-serif;
 }
-
 .row::after {
   content: "";
   clear: both;
   display: table;
 }
-
 [class*="col-"] {
   float: left;
   padding: 5px; 
 }
-
 html {
   font-size: 14px;
   line-height: 1;
   background-color:#efefef;
 }
-
-
 .menu ul {
   list-style-type: none;
   margin: 0;
@@ -46,7 +40,7 @@ html {
 }
 
 .menu li:hover {
-  background-color: violet;
+  background-color: #80d3f1;
 }
 
 .aside {
